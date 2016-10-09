@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/cgberlin/text-bug#readme",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "mongodb": "^2.2.10",
+    "mongoose": "^4.6.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
