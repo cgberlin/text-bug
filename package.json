@@ -24,6 +24,7 @@
   "homepage": "https://github.com/cgberlin/text-bug#readme",
   "dependencies": {
     "express": "^4.14.0",
+    "jquery": "^3.1.1",
     "mongodb": "^2.2.10",
     "mongoose": "^4.6.3"
   },

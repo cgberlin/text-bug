@@ -1,0 +1,30 @@
+.main-page-container {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  color:white;
+}
+body {
+  background-image: url("smartphone.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.main-text-container {
+  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  margin:256px auto;
+}
+#main-text-title {
+  font-size:13rem;
+  font-family: 'Droid Serif', serif;
+  font-weight:700;
+
+}
+#main-text-description {
+  font-family: 'Droid Serif', serif;
+  font-size:3rem;
+}
