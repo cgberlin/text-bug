@@ -55,19 +55,44 @@
         </form>
       </div>
 
-      <div class = "main-account-panel">
+      <div class = "main-account-panel">    <!--account panel after login-->
         <h3>Account Panel</h3>
         <div id = "panel-buttons-container">
           <button id = "create-new-message-button" type="button" class="btn btn-primary btn-lg">New Message</button>
           <button id = "view-pending-button" type="button" class="btn btn-primary btn-lg">Pending Messages</button>
           <button id = "contacts-button" type="button" class="btn btn-primary btn-lg">Contacts</button>
-          <button id = "logout-button" type = "submit" class = "btn btn-danger">Log Out</button>
+          <button id = "logout-button" type = "button" class = "btn btn-danger">Log Out</button>
         </div>
+      </div>
 
+      <div class = "new-message-container">    <!--create new message page-->
+        <h3>Create Message</h3>
+        <form id = "new-message-form">
+          <div class = "form-group">
+            <label for "message-name">Message Name</label>
+            <input id = "message-name" type = "text" class = "form-control"></input>
+            <small id= "message-name-text" class="form-text text-muted">Please enter a name for this message.</small>
+          </div>
+          <div class = "form-group">
+            <label for "new-message-contact">Select Contacts or Click New Contact</label>  <!--will load list of contacts in menu from mongodb-->
+          </div>
+          <button id = "new-message-create-contact" type = "button" class = "btn btn-primary">New Contact</button>
+          <div class = "form-group">
+            <label for "datepicker">Select a date and time for message to be sent.</label> <!--need to figure out datepicker-->
+            <input id = "datepicker" type = "text" class = "form-control"></input>
+          </div>
+          <div class= "form-group">
+            <label for "message-body">Enter Message</label>
+            <input id = "message-body" type = "text" class = "form-control"></input>
+          </div>
+          <button id = "submit-new-message" type = "submit" class = "btn btn-primary">Create Message</button>
+        </form>
       </div>
 
       <script type="text/javascript" src="main.js"></script>
-    </body>
+      <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+      <script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+      </body>
 
 
 </html>
