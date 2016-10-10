@@ -40,3 +40,23 @@ body {
 #sign-up-form {
   margin:4rem;
 }
+.main-account-panel {
+  background-color: #333;
+  color:white;
+  border:1px solid #101010;
+  height: auto;
+  width:60vw;
+  margin:10rem auto;
+  text-align: center;
+}
+#panel-buttons-container {
+  display:flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+#create-new-message-button, #view-pending-button, #contacts-button, #logout-button{
+  margin:2rem;
+}
+#logout-button{
+  width:11rem;
+}
