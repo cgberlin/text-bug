@@ -72,6 +72,15 @@ body {
   text-align: center;
   display:none;
 }
-#new-message-form {
+#new-message-form, #add-contact-form {
   margin:2rem;
+}
+.contact-page-container {
+  background-color: #333;
+  color:white;
+  border:1px solid #101010;
+  height: auto;
+  width:60vw;
+  margin:10rem auto;
+  text-align: center;
 }
