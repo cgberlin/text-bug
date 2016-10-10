@@ -12,7 +12,7 @@ body {
 }
 .main-text-container {
   text-align: center;
-  display:none;
+  display:flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
@@ -83,4 +83,5 @@ body {
   width:60vw;
   margin:10rem auto;
   text-align: center;
+  display:none;
 }
