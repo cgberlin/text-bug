@@ -12,7 +12,7 @@ body {
 }
 .main-text-container {
   text-align: center;
-  display:flex;
+  display:none;
   justify-content: center;
   align-items: center;
   flex-flow: column;
@@ -27,4 +27,16 @@ body {
 #main-text-description {
   font-family: 'Droid Serif', serif;
   font-size:3rem;
+}
+.sign-up-container {
+  background-color: #333;
+  color:white;
+  border:1px solid #101010;
+  height: 80vh;
+  width:60vw;
+  margin:10rem auto;
+  display:none;
+}
+#sign-up-form {
+  margin:4rem;
 }
