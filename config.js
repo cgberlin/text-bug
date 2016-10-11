@@ -1,6 +1,5 @@
-exports.DATABASE_URL = process.env.DATABASE_URL ||
-                       global.DATABASE_URL ||
-                       (process.env.NODE_ENV === 'production' ?
-                            'mongodb://localhost/text-bug' :
-                            'mongodb://localhost/text-bug-dev');
+exports.DATABASE_URL =
+                       (
+                            'mongodb://cgberlin:Vagrant@ds053216.mlab.com:53216/text-bug'
+                            );
 exports.PORT = process.env.PORT || 8080;

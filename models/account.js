@@ -5,6 +5,6 @@ var AccountSchema = mongoose.Schema({
     password: {type: String, required: true}
  });
 
- var Account = mongoose.model('Account', accountSchema);
+ var Account = mongoose.model('Account', AccountSchema);
 
-module.exports = Item;
+module.exports = Account;
