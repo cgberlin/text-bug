@@ -58,7 +58,7 @@ app.get('/hidden', passport.authenticate('local', {session: false}), function(re
 
 app.post('/users', function(req, res) {
     <!--account creation-->
-    
+
     if (!req.body) {
         return res.status(400).json({
             message: "No request body"
@@ -109,12 +109,13 @@ app.post('/users', function(req, res) {
         });
     }
 
-    var account = new Account({
+    var newAccount = new Account({
+        username: email,
         email: email,
         password: password
     });
 
-    account.save(function(err) {
+    newAccount.save(function(err) {
         if (err) {
             return res.status(500).json({
                 message: 'Internal server error'
