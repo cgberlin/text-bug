@@ -1,7 +1,14 @@
-var accountReal;
 
 
+$('#create-new-message-button').on('click', function(){
+  $('.main-account-panel').hide();
+  $('.new-message-container').show();
+});
 
+$('#contacts-button').on('click', function(){
+  $('.main-account-panel').hide();
+  $('.contact-page-container').show();
+});
 
 $('#login-form-login').on('click', function(){
   var emailName = $('#email-login').val();
@@ -14,6 +21,8 @@ $('#login-form-login').on('click', function(){
                       .done(function(){
                                 $('.main-page-container').hide();
                                 $('.main-account-panel').show();
+                                $('#login-form').hide();
+                                accountReal = true;
                               });
   });
 

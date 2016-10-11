@@ -45,7 +45,7 @@ body {
   color:white;
   border:1px solid #101010;
   height: auto;
-  width:60vw;
+  width:30vw;
   margin:10rem auto;
   text-align: center;
   display:none;
@@ -53,14 +53,15 @@ body {
 #panel-buttons-container {
   display:flex;
   flex-flow: column;
+  align-items: center;
   justify-content: space-around;
+
 }
 #create-new-message-button, #view-pending-button, #contacts-button, #logout-button{
-  margin:2rem;
+  margin:3rem;
+  width:20rem;
 }
-#logout-button{
-  width:11rem;
-}
+
 
 .new-message-container {
   background-color: #333;
