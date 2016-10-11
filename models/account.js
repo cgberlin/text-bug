@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 
 var AccountSchema = mongoose.Schema({
-    email: {type: String, unique: true, required:true},
-    password: {type: String, required: true}
+    email: String,
+    password: String
  });
 
  var Account = mongoose.model('Account', AccountSchema);

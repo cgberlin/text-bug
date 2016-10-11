@@ -5,17 +5,20 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Account = require('./models/account');
 var config = require('./config');
-var jsonParser = bodyParser.json();
+
+
 var passport = require('passport');
-var BasicStrategy = require('passport-http').BasicStrategy;
+var LocalStrategy = require('passport-local').Strategy;
 app.use(passport.initialize());
 
 
 
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 
-var strategy = new BasicStrategy(function(email, password, callback) {
+var strategy = new LocalStrategy(function(email, password, callback) {
     Account.findOne({
         email: email
     }, function (err, Account) {
@@ -47,13 +50,15 @@ var strategy = new BasicStrategy(function(email, password, callback) {
 
 passport.use(strategy);
 
-app.get('/hidden', passport.authenticate('basic', {session: false}), function(req, res) {
+app.get('/hidden', passport.authenticate('local', {session: false}), function(req, res) {
     res.json({
         message: 'sucess'
     });
 });
 
-app.post('/users', jsonParser, function(req, res) {           <!--account creation-->
+app.post('/users', function(req, res) {
+    <!--account creation-->
+    
     if (!req.body) {
         return res.status(400).json({
             message: "No request body"
@@ -104,12 +109,12 @@ app.post('/users', jsonParser, function(req, res) {           <!--account creati
         });
     }
 
-    var Account = new Account({
+    var account = new Account({
         email: email,
         password: password
     });
 
-    Account.save(function(err) {
+    account.save(function(err) {
         if (err) {
             return res.status(500).json({
                 message: 'Internal server error'
