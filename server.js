@@ -4,56 +4,46 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Account = require('./models/account');
+
 var config = require('./config');
 
 
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-app.use(passport.initialize());
+var Strategy = require('passport-local').Strategy;
+
 
 
 
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(passport.initialize());
 
-
-var strategy = new LocalStrategy(function(email, password, callback) {
-    Account.findOne({
-        email: email
-    }, function (err, Account) {
-        if (err) {
-            callback(err);
-            return;
-        }
-
-        if (!user) {
-            return callback(null, false, {
-                message: 'Incorrect email.'
-            });
-        }
-
-        user.validatePassword(password, function(err, isValid) {
-            if (err) {
-                return callback(err);
-            }
-
-            if (!isValid) {
-                return callback(null, false, {
-                    message: 'Incorrect password.'
-                });
-            }
-            return callback(null, user);
-        });
+passport.use(new Strategy(
+  function(username, password, cb) {
+    Account.findByUsername(username, function(err, account) {
+      if (err) { return cb(err); }
+      if (!account) { return cb(null, false); }
+      if (account.password != password) { return cb(null, false); }
+      return cb(null, account);
     });
-});
+  }));
 
-passport.use(strategy);
 
-app.get('/hidden', passport.authenticate('local', {session: false}), function(req, res) {
-    res.json({
-        message: 'sucess'
+passport.serializeUser(function(account, cb) {
+    cb(null, account.id);
+  });
+
+passport.deserializeUser(function(id, cb) {
+    Account.findById(id, function (err, account) {
+      if (err) { return cb(err); }
+      cb(null, account);
     });
+  });
+
+
+app.post('/hidden', passport.authenticate('local'), function(req, res) {
+  res.json('yes');
 });
 
 app.post('/users', function(req, res) {
@@ -114,7 +104,7 @@ app.post('/users', function(req, res) {
         email: email,
         password: password
     });
-
+    passport.authenticate('local');
     newAccount.save(function(err) {
         if (err) {
             return res.status(500).json({

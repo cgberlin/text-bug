@@ -1,11 +1,21 @@
+var accountReal;
+
+
+
+
 $('#login-form-login').on('click', function(){
-  var email = $('#email-login').val();
-  var password = $('#password-login').val();
-  $.get('/hidden', {email: email, password: password})
-        .done(function(){
-          console.log('tested for login');
-        });
-});
+  var emailName = $('#email-login').val();
+  var passwordName = $('#password-login').val();
+  var credentials = {
+    username : emailName,
+    password : passwordName
+  };
+  var accountReal = $.post('/hidden', credentials)
+                      .done(function(){
+                                $('.main-page-container').hide();
+                                $('.main-account-panel').show();
+                              });
+  });
 
 $('#account-create-button').on('click', function(){
   var emailName = $('#sign-up-email').val();
@@ -16,7 +26,6 @@ $('#account-create-button').on('click', function(){
         email : emailName,
         password : passwordName
       };
-      console.log(credentials);
       $.post('/users', credentials)
           .done(console.log('success'));
     }
