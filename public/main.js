@@ -10,19 +10,28 @@ $('#new-message-create-contact').on('click', function(){  //listener for the but
 });
 
 $('#submit-new-contact').on('click', function(){  //listener for button on the inline contact form that is accessed through new message
+
+  updateContact($('#add-contact-name').val(),  $('#add-contact-number').val());
+});
+
+$('#submit-new-contact-inline').on('click', function(){
   $('#inline-contact-add-form').hide();
+  updateContact($('#add-contact-name-inline').val(), $('#add-contact-number-inline').val());
+});
+
+function updateContact(nameSubmit, numberSubmit){
   var body = {
     username : account,
     contact : {
-      name : $('#add-contact-name').val(),
-      number : $('#add-contact-number').val()
+      name : nameSubmit,
+      number : numberSubmit
     }
   }
   $.post('/update', body)
         .done(function(response){
           console.log(response);
         });
-});
+}
 
 $('#create-new-message-button').on('click', function(){
   $('.main-account-panel').hide();
