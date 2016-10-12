@@ -50,7 +50,7 @@ $('#login-form-login').on('click', function(){
                               });
   });
 
-$('#account-create-button').on('click', function(){
+$('#account-create-button').on('click', function(){  //handler for account creation
   var emailName = $('#sign-up-email').val();
   var passwordName = $('#sign-up-password').val();
   var passwordVerify = $('#sign-up-password-verify').val();
@@ -61,6 +61,8 @@ $('#account-create-button').on('click', function(){
       };
       $.post('/users', credentials)
           .done(console.log('success'));
+      $('.sign-up-container').hide();
+      $('.main-page-container').show();
     }
   else {
     alert('passwords dont match');
