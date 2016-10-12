@@ -1,4 +1,28 @@
+var account;
 
+
+$( function() {
+  $( "#datepicker" ).datepicker();
+} );
+
+$('#new-message-create-contact').on('click', function(){  //listener for the button to bring up the inline contact add form
+  $('#inline-contact-add-form').show();
+});
+
+$('#submit-new-contact').on('click', function(){  //listener for button on the inline contact form that is accessed through new message
+  $('#inline-contact-add-form').hide();
+  var body = {
+    username : account,
+    contact : {
+      name : $('#add-contact-name').val(),
+      number : $('#add-contact-number').val()
+    }
+  }
+  $.post('/update', body)
+        .done(function(response){
+          console.log(response);
+        });
+});
 
 $('#create-new-message-button').on('click', function(){
   $('.main-account-panel').hide();
@@ -22,7 +46,7 @@ $('#login-form-login').on('click', function(){
                                 $('.main-page-container').hide();
                                 $('.main-account-panel').show();
                                 $('#login-form').hide();
-                                accountReal = true;
+                                account = credentials.username;
                               });
   });
 

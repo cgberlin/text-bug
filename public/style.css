@@ -62,7 +62,17 @@ body {
   width:20rem;
 }
 
-
+#inline-contact-add-form {
+  z-index:4;
+  margin-top:9rem;
+  background:rgba(49,79,79, 0.9);
+  border:2px solid white;
+  position:absolute;
+  margin:9rem 40vw;
+  display:none;
+  color:white;
+  box-shadow:3px 3px 2px black;
+}
 .new-message-container {
   background-color: #333;
   color:white;
@@ -86,3 +96,12 @@ body {
   text-align: center;
   display:none;
 }
+.ui-datepicker {
+	background-color: #fff;
+	border: 1px solid #66AFE9;
+	border-radius: 4px;
+	box-shadow: 0 0 8px rgba(102,175,233,.6);
+	display: none;
+	margin-top: 4px;
+	padding: 10px;
+	width: 240px;

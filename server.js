@@ -116,6 +116,23 @@ app.post('/users', function(req, res) {
     });
 });
 
+app.post('/update', function(req, res){
+  Account.findByUsername(req.body.username, function(err, account){
+    if (err) { return res.status(500).json({
+        message: 'Internal server error'
+    });
+  }
+    if (!account) { return res.json({
+      message: 'no account specified'
+    });
+   }
+    account.contacts.push(req.body.contact);
+    account.save(function(){
+      console.log(account);
+        });
+  });
+});
+
 var runServer = function(callback) {
     mongoose.connect(config.DATABASE_URL, function(err) {
         if (err && callback) {
