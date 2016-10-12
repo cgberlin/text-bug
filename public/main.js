@@ -1,4 +1,4 @@
-var account;
+var account = '';
 
 
 $( function() {
@@ -72,4 +72,15 @@ $('#account-create-button').on('click', function(){  //handler for account creat
 $('#sign-up').on('click', function(){
   $('.main-page-container').hide()
   $('.sign-up-container').show();
+});
+
+$('#brand').on('click', function(){
+  if (account != ''){
+    $('.sign-up-container').hide();
+    $('#inline-contact-add-form').hide();
+    $('.new-message-container').hide();
+    $('.contact-page-container').hide();
+    $('.main-account-panel').show();
+  }
+
 });
