@@ -133,6 +133,27 @@ app.post('/update', function(req, res){
   });
 });
 
+app.post('/remove', function(req, res){
+  Account.findByUsername(req.body.username, function(err, account){
+    if (err) { return res.status(500).json({
+        message: 'Internal server error'
+    });
+  }
+    if (!account) { return res.json({
+      message: 'no account found'
+    });
+   }
+   var contactToRemove = req.body.name;
+   for (i = 0; i < account.contacts.length; i++){
+     if (account.contacts[i].name == contactToRemove){
+       account.contacts.splice(i, 1);
+       account.save();
+       console.log(account.contacts);
+     }
+   }
+  });
+});
+
 app.get('/contacts', function(req, res){
   console.log(req.query.username);
   Account.findByUsername(req.query.username, function(err, account){

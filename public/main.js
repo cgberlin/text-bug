@@ -10,7 +10,6 @@ $('#new-message-create-contact').on('click', function(){  //listener for the but
 });
 
 $('#submit-new-contact').on('click', function(){  //listener for button on the inline contact form that is accessed through new message
-
   updateContact($('#add-contact-name').val(),  $('#add-contact-number').val());
 });
 
@@ -20,6 +19,7 @@ $('#submit-new-contact-inline').on('click', function(){
 });
 
 function updateContact(nameSubmit, numberSubmit){
+  $('#list-of-contacts').append('<p class = "contacts" id = "'+nameSubmit+'">'+ nameSubmit + ' : '+ numberSubmit +' ' +'<button type = "button" class = "btn btn-warning">Remove</button></p>');
   var body = {
     username : account,
     contact : {
@@ -33,6 +33,14 @@ function updateContact(nameSubmit, numberSubmit){
         });
 }
 
+function updateContactPage(body){
+  $.get('/contacts', body)
+                      .done(function(contacts){
+                        for (var i = 0; i < contacts.length; i++){
+                          $('#list-of-contacts').append('<p class = "contacts" id = "'+contacts[i].name+'">'+ contacts[i].name + ' : '+ contacts[i].number +' ' + '<button type = "button" class = "btn btn-warning">Remove</button></p>');
+                        }
+                      });
+}
 $('#create-new-message-button').on('click', function(){
   $('.main-account-panel').hide();
   $('.new-message-container').show();
@@ -44,13 +52,22 @@ $('#contacts-button').on('click', function(){
   var body = {
     username : account
   }
-  $.get('/contacts', body)
-                      .done(function(contacts){
-                        for (var i = 0; i < contacts.length; i++){
-                          console.log(contacts[i].name);
-                          $('#contacts-header-title').append('<p class = "contacts">'+ contacts[i].name + ' : '+ contacts[i].number +'<button id = "remove-contact" type = "button" class = "btn btn-danger">Remove</button></p>')
-                        }
-                      });
+  updateContactPage(body);
+});
+
+
+$('.contact-page-container').on('click', '.btn-warning', function(){
+    var contactToRemove = $(this).parent().prop('id');
+    console.log($(this).parent().prop('id'));
+    var body = {
+      username : account,
+      name : contactToRemove
+    }
+    $.post('/remove', body)
+          .done(function(){
+            console.log('removed contact');
+          });
+    $(this).parent().remove();
 });
 
 $('#login-form-login').on('click', function(){
