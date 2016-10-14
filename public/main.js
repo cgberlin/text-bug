@@ -41,6 +41,16 @@ $('#create-new-message-button').on('click', function(){
 $('#contacts-button').on('click', function(){
   $('.main-account-panel').hide();
   $('.contact-page-container').show();
+  var body = {
+    username : account
+  }
+  $.get('/contacts', body)
+                      .done(function(contacts){
+                        for (var i = 0; i < contacts.length; i++){
+                          console.log(contacts[i].name);
+                          $('#contacts-header-title').append('<p class = "contacts">'+ contacts[i].name + ' : '+ contacts[i].number +'<button id = "remove-contact" type = "button" class = "btn btn-danger">Remove</button></p>')
+                        }
+                      });
 });
 
 $('#login-form-login').on('click', function(){

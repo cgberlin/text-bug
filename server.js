@@ -128,8 +128,24 @@ app.post('/update', function(req, res){
    }
     account.contacts.push(req.body.contact);
     account.save(function(){
-      console.log(account);
+          console.log('account saved');
         });
+  });
+});
+
+app.get('/contacts', function(req, res){
+  console.log(req.query.username);
+  Account.findByUsername(req.query.username, function(err, account){
+    if (err) { return res.status(500).json({
+        message: 'Internal server error'
+    });
+  }
+    if (!account) { return res.json({
+      message: 'no account specified'
+    });
+   }
+      var contacts = account.contacts;
+      return res.json(contacts);
   });
 });
 
