@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var Account = require('./models/account');
-
+var CronJob = require('cron').CronJob;
 var config = require('./config');
 
 
@@ -45,6 +45,8 @@ passport.deserializeUser(function(id, cb) {
 app.post('/hidden', passport.authenticate('local'), function(req, res) {
   res.json('yes');
 });
+
+
 
 app.post('/users', function(req, res) {
     <!--account creation-->
@@ -168,6 +170,19 @@ app.get('/contacts', function(req, res){
       var contacts = account.contacts;
       return res.json(contacts);
   });
+});
+
+app.post('/create-message', function(req, res){
+  console.log(req.body);
+  var job = new CronJob({
+  cronTime: '00 23 17 * * 1-5',
+  onTick: function() {
+    console.log('asdasssssssssssssssssssssssssss');
+  },
+  start: false,
+  timeZone: 'America/Los_Angeles'
+});
+job.start();
 });
 
 var runServer = function(callback) {

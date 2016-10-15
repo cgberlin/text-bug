@@ -55,6 +55,16 @@ $('#contacts-button').on('click', function(){
   updateContactPage(body);
 });
 
+$('#submit-new-message').on('click', function(){
+  var body = {
+    username : account,
+    messageName : $('#message-name').val(),
+    date : $('#datepicker').val(),
+    messageText : $('#message-body').val()
+  }
+  $.post('/create-message', body);
+});
+
 
 $('.contact-page-container').on('click', '.btn-warning', function(){
     var contactToRemove = $(this).parent().prop('id');
@@ -118,5 +128,4 @@ $('#brand').on('click', function(){
     $('.contact-page-container').hide();
     $('.main-account-panel').show();
   }
-
 });
