@@ -173,9 +173,11 @@ app.get('/contacts', function(req, res){
 });
 
 app.post('/create-message', function(req, res){
-  console.log(req.body);
+  var date = new Date(req.body.date);
+  var cronDate = ('00 00 12 ' + date.getDate() + ' ' + date.getMonth() + ' ' +'*');
+  console.log(cronDate);
   var job = new CronJob({
-  cronTime: '00 23 17 * * 1-5',
+  cronTime: cronDate,
   onTick: function() {
     console.log('asdasssssssssssssssssssssssssss');
   },
