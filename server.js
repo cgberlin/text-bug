@@ -6,7 +6,9 @@ var mongoose = require('mongoose');
 var Account = require('./models/account');
 var CronJob = require('cron').CronJob;
 var config = require('./config');
-
+var sinchAuth = require('sinch-auth');
+var sinchSms = require('sinch-messaging');
+var auth = sinchAuth("67a8370a-9a36-40c6-a114-a2d63f598000", "0Ns0QdjDZUmNLSqrRs/jpw==");
 
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
@@ -174,12 +176,13 @@ app.get('/contacts', function(req, res){
 
 app.post('/create-message', function(req, res){
   var date = new Date(req.body.date);
-  var cronDate = ('00 00 12 ' + date.getDate() + ' ' + date.getMonth() + ' ' +'*');
+  var cronDate = ('00 57 17 ' + date.getDate() + ' ' + date.getMonth() + ' ' +'*');
   console.log(cronDate);
   var job = new CronJob({
   cronTime: cronDate,
   onTick: function() {
-    console.log('asdasssssssssssssssssssssssssss');
+    console.log('message out!');
+    sinchSms.sendMessage("+14242234443", req.body.messageText);
   },
   start: false,
   timeZone: 'America/Los_Angeles'
