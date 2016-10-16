@@ -6,7 +6,8 @@ var Account = new Schema({
     username: String,
     email: String,
     password: String,
-    contacts: []
+    contacts: [],
+    pendingMessages : []
 });
 
 Account.plugin(passportLocalMongoose);

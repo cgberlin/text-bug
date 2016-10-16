@@ -47,6 +47,7 @@ $('#create-new-message-button').on('click', function(){
 });
 
 $('#contacts-button').on('click', function(){
+  $('.pending-message-container').hide();
   $('.main-account-panel').hide();
   $('.contact-page-container').show();
   var body = {
@@ -65,6 +66,21 @@ $('#submit-new-message').on('click', function(){
   $.post('/create-message', body);
 });
 
+$('#view-pending-button').on('click', function(){
+  $('.main-account-panel').hide();
+  $('.pending-message-container').show();
+  $('#list-of-messages').empty();
+  var body = {
+    username : account
+  }
+  $.get('/messages', body)
+      .done(function(pendingMessages){
+        for (var length = pendingMessages.length,  i = 0; i < length; i++){
+          $('#list-of-messages').append('<div class ="pending-message"><p>Name:'+' '+pendingMessages[i].messageName+
+                                                        ' '+'-------'+' '+'Date:'+' '+pendingMessages[i].date);
+        }
+      });
+});
 
 $('.contact-page-container').on('click', '.btn-warning', function(){
     var contactToRemove = $(this).parent().prop('id');
@@ -116,6 +132,7 @@ $('#account-create-button').on('click', function(){  //handler for account creat
 });
 
 $('#sign-up').on('click', function(){
+  $('.pending-message-container').hide();
   $('.main-page-container').hide()
   $('.sign-up-container').show();
 });
@@ -124,6 +141,7 @@ $('#brand').on('click', function(){
   if (account != ''){
     $('.sign-up-container').hide();
     $('#inline-contact-add-form').hide();
+    $('.pending-message-container').hide();
     $('.new-message-container').hide();
     $('.contact-page-container').hide();
     $('.main-account-panel').show();

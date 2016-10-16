@@ -86,7 +86,7 @@ body {
 #new-message-form, #add-contact-form {
   margin:2rem;
 }
-.contact-page-container {
+.contact-page-container, .pending-message-container {
   background-color: #333;
   color:white;
   border:1px solid #101010;

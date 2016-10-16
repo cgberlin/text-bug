@@ -174,7 +174,35 @@ app.get('/contacts', function(req, res){
   });
 });
 
+app.get('/messages', function(req, res){
+  console.log(req.query.username);
+  Account.findByUsername(req.query.username, function(err, account){
+    if (err) { return res.status(500).json({
+        message: 'Internal server error'
+    });
+  }
+    if (!account) { return res.json({
+      message: 'no account specified'
+    });
+   }
+      var pendingMessages = account.pendingMessages;
+      return res.json(pendingMessages);
+  });
+});
+
 app.post('/create-message', function(req, res){
+  Account.findByUsername(req.body.username, function(err, account){
+    if (err) { return res.status(500).json({
+        message: 'Internal server error'
+    });
+  }
+    if (!account) { return res.json({
+      message: 'no account specified'
+    });
+   }
+    account.pendingMessages.push(req.body);
+    account.save();
+  });
   var date = new Date(req.body.date);
   var cronDate = ('00 57 17 ' + date.getDate() + ' ' + date.getMonth() + ' ' +'*');
   console.log(cronDate);
@@ -183,12 +211,12 @@ app.post('/create-message', function(req, res){
   onTick: function() {
     console.log('message out!');
     sinchSms.sendMessage("+14242234443", req.body.messageText);
-  },
-  start: false,
-  timeZone: 'America/Los_Angeles'
-});
-job.start();
-});
+          },
+          start: false,
+          timeZone: 'America/Los_Angeles'
+        });
+        job.start();
+        });
 
 var runServer = function(callback) {
     mongoose.connect(config.DATABASE_URL, function(err) {
