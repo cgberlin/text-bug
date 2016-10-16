@@ -87,12 +87,16 @@
             <small id= "message-name-text" class="form-text text-muted">Please enter a name for this message.</small>
           </div>
           <div class = "form-group">
-            <label for "new-message-contact">Select Contacts or Click New Contact</label>  <!--will load list of contacts in menu from mongodb-->
+            <label for "new-message-contact">Enter Contact Name or Click New Contact</label>  <!--will load list of contacts in menu from mongodb-->
+            <input id = "contact-name-new-message" type = "text" class = "form-control"></input>
+            <small id= "message-contact-text" class="form-text text-muted">Please enter the contacts name.</small>
+
           </div>
           <button id = "new-message-create-contact" type = "button" class = "btn btn-primary">New Contact</button>
           <div class = "form-group">
             <label for "datepicker">Select a date and time for message to be sent.</label> <!--need to figure out datepicker-->
             <div id = "datepicker-container"><p>Date:<input type = "text" id = "datepicker"></input></p></div>
+            <input id = "new-message-time" type = "time" value = "17:39"></input>
           </div>
           <div class= "form-group">
             <label for "message-body">Enter Message</label>

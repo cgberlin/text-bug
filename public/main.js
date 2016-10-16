@@ -61,7 +61,9 @@ $('#submit-new-message').on('click', function(){
     username : account,
     messageName : $('#message-name').val(),
     date : $('#datepicker').val(),
-    messageText : $('#message-body').val()
+    time : $('#new-message-time').val(),
+    messageText : $('#message-body').val(),
+    contact : $('#contact-name-new-message').val()
   }
   $.post('/create-message', body);
 });

@@ -10,6 +10,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
+#new-message-time {
+  color:black;
+}
 .main-text-container {
   text-align: center;
   display:flex;
@@ -108,4 +111,7 @@ body {
 }
 #brand:hover {
   cursor:pointer;
+}
+#datepicker {
+  color:black;
 }
