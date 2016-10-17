@@ -9,7 +9,7 @@ var config = require('./config');
 var sinchAuth = require('sinch-auth');
 var sinchSms = require('sinch-messaging');
 var auth = sinchAuth("67a8370a-9a36-40c6-a114-a2d63f598000", "0Ns0QdjDZUmNLSqrRs/jpw==");
-
+var serverFunctions = require('./server-modules');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 
@@ -47,9 +47,6 @@ passport.deserializeUser(function(id, cb) {
 app.post('/hidden', passport.authenticate('local'), function(req, res) {
   res.json('yes');
 });
-
-
-
 app.post('/users', function(req, res) {
     <!--account creation-->
 
@@ -115,7 +112,6 @@ app.post('/users', function(req, res) {
                 message: 'Internal server error'
             });
         }
-
         return res.status(201).json({});
     });
 });
