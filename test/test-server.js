@@ -18,4 +18,12 @@ describe('text-bug', function() {
               done();
           });
   });
+  it('should respond with json', function(done){
+      chai.request(app)
+          .get('/messages')
+          .end(function(err, res) {
+            res.should.be.json;
+            done();
+          });
+  });
 });
