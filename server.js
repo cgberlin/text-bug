@@ -117,20 +117,7 @@ app.post('/users', function(req, res) {
 });
 
 app.put('/update', function(req, res){
-  Account.findByUsername(req.body.username, function(err, account){
-    if (err) { return res.status(500).json({
-        message: 'Internal server error'
-    });
-  }
-    if (!account) { return res.json({
-      message: 'no account specified'
-    });
-   }
-    account.contacts.push(req.body.contact);
-    account.save(function(){
-          console.log('account saved');
-        });
-  });
+  serverFunctions.findUserAndSaveContact(req);
 });
 
 app.delete('/remove', function(req, res){
