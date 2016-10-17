@@ -1,35 +1,38 @@
 .main-page-container {
-  display:flex;
-  justify-content: center;
+  color:white;
+}
+
+.main-page-container, .main-text-container, #panel-buttons-container {
+  display: flex;
   align-items: center;
   flex-flow: column;
-  color:white;
 }
 body {
   background-image: url("smartphone.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
-#new-message-time {
-  color:black;
-}
-.main-text-container {
-  text-align: center;
-  display:flex;
+.main-text-container, .main-page-container {
   justify-content: center;
-  align-items: center;
-  flex-flow: column;
+}
+.main-text-container, .main-account-panel, .new-message-container, .contact-page-container, .pending-message-container {
+  text-align: center;
+}
+.main-text-container{
   margin:256px auto;
+}
+#main-text-title, #main-text-description {
+    font-family: 'Droid Serif', serif;
 }
 #main-text-title {
   font-size:13rem;
-  font-family: 'Droid Serif', serif;
   font-weight:700;
-
 }
 #main-text-description {
-  font-family: 'Droid Serif', serif;
   font-size:3rem;
+}
+.sign-up-container, .main-account-panel, #inline-contact-add-form, .new-message-container, .contact-page-container, .pending-message-container, .ui-datepicker,  {
+  display: none;
 }
 .sign-up-container {
   background-color: #333;
@@ -38,7 +41,6 @@ body {
   height: 80vh;
   width:60vw;
   margin:10rem auto;
-  display:none;
 }
 #sign-up-form {
   margin:4rem;
@@ -50,15 +52,9 @@ body {
   height: auto;
   width:30vw;
   margin:10rem auto;
-  text-align: center;
-  display:none;
 }
 #panel-buttons-container {
-  display:flex;
-  flex-flow: column;
-  align-items: center;
   justify-content: space-around;
-
 }
 #create-new-message-button, #view-pending-button, #contacts-button, #logout-button{
   margin:3rem;
@@ -72,7 +68,6 @@ body {
   border:2px solid white;
   position:absolute;
   margin:9rem 40vw;
-  display:none;
   color:white;
   box-shadow:3px 3px 2px black;
 }
@@ -83,8 +78,6 @@ body {
   height: auto;
   width:60vw;
   margin:10rem auto;
-  text-align: center;
-  display:none;
 }
 #new-message-form, #add-contact-form {
   margin:2rem;
@@ -96,15 +89,12 @@ body {
   height: auto;
   width:60vw;
   margin:10rem auto;
-  text-align: center;
-  display:none;
 }
 .ui-datepicker {
 	background-color: #fff;
 	border: 1px solid #66AFE9;
 	border-radius: 4px;
 	box-shadow: 0 0 8px rgba(102,175,233,.6);
-	display: none;
 	margin-top: 4px;
 	padding: 10px;
 	width: 240px;
@@ -112,6 +102,6 @@ body {
 #brand:hover {
   cursor:pointer;
 }
-#datepicker {
+#datepicker, #new-message-time  {
   color:black;
 }

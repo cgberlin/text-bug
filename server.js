@@ -120,7 +120,7 @@ app.post('/users', function(req, res) {
     });
 });
 
-app.post('/update', function(req, res){
+app.put('/update', function(req, res){
   Account.findByUsername(req.body.username, function(err, account){
     if (err) { return res.status(500).json({
         message: 'Internal server error'
@@ -137,7 +137,7 @@ app.post('/update', function(req, res){
   });
 });
 
-app.post('/remove', function(req, res){
+app.delete('/remove', function(req, res){
   Account.findByUsername(req.body.username, function(err, account){
     if (err) { return res.status(500).json({
         message: 'Internal server error'

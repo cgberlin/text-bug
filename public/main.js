@@ -1,12 +1,19 @@
 var account = '';
 
-
+var pages = {
+  mainAccountPanel : $('.main-account-panel'),
+  signUpPage : $('.sign-up-container'),
+  pendingMessagePage : $('.pending-message-container'),
+  newMessagePage : $('.new-message-container'),
+  contactPage : $('.contact-page-container'),
+  inlineContactForm : $('#inline-contact-add-form')
+};
 $( function() {
   $( "#datepicker" ).datepicker();
-} );
+});
 
 $('#new-message-create-contact').on('click', function(){  //listener for the button to bring up the inline contact add form
-  $('#inline-contact-add-form').show();
+  pages.inlineContactForm.show();
 });
 
 $('#submit-new-contact').on('click', function(){  //listener for button on the inline contact form that is accessed through new message
@@ -14,7 +21,7 @@ $('#submit-new-contact').on('click', function(){  //listener for button on the i
 });
 
 $('#submit-new-contact-inline').on('click', function(){
-  $('#inline-contact-add-form').hide();
+  pages.inlineContactForm.hide();
   updateContact($('#add-contact-name-inline').val(), $('#add-contact-number-inline').val());
 });
 
@@ -27,10 +34,11 @@ function updateContact(nameSubmit, numberSubmit){
       number : numberSubmit
     }
   }
-  $.post('/update', body)
-        .done(function(response){
-          console.log(response);
-        });
+  $.ajax({
+        url : '/update',
+        data : body,
+        type : 'PUT'
+    });
 }
 
 function updateContactPage(body){
@@ -42,14 +50,15 @@ function updateContactPage(body){
                       });
 }
 $('#create-new-message-button').on('click', function(){
-  $('.main-account-panel').hide();
-  $('.new-message-container').show();
+  pages.mainAccountPanel.hide();
+  pages.newMessagePage.show();
 });
 
 $('#contacts-button').on('click', function(){
-  $('.pending-message-container').hide();
-  $('.main-account-panel').hide();
-  $('.contact-page-container').show();
+  $('#list-of-contacts').empty();
+  pages.pendingMessagePage.hide();
+  pages.mainAccountPanel.hide();
+  pages.contactPage.show();
   var body = {
     username : account
   }
@@ -69,8 +78,8 @@ $('#submit-new-message').on('click', function(){
 });
 
 $('#view-pending-button').on('click', function(){
-  $('.main-account-panel').hide();
-  $('.pending-message-container').show();
+  pages.mainAccountPanel.hide();
+  pages.pendingMessagePage.show();
   $('#list-of-messages').empty();
   var body = {
     username : account
@@ -91,10 +100,12 @@ $('.contact-page-container').on('click', '.btn-warning', function(){
       username : account,
       name : contactToRemove
     }
-    $.post('/remove', body)
-          .done(function(){
-            console.log('removed contact');
-          });
+    $.ajax({
+      url : '/remove',
+      data : body,
+      type : 'DELETE'
+  });
+
     $(this).parent().remove();
 });
 
@@ -108,7 +119,7 @@ $('#login-form-login').on('click', function(){
   var accountReal = $.post('/hidden', credentials)
                       .done(function(){
                                 $('.main-page-container').hide();
-                                $('.main-account-panel').show();
+                                pages.mainAccountPanel.show();
                                 $('#login-form').hide();
                                 account = credentials.username;
                               });
@@ -134,18 +145,18 @@ $('#account-create-button').on('click', function(){  //handler for account creat
 });
 
 $('#sign-up').on('click', function(){
-  $('.pending-message-container').hide();
+  pages.pendingMessagePage.hide();
   $('.main-page-container').hide()
-  $('.sign-up-container').show();
+  pages.signUpPage.show();
 });
 
 $('#brand').on('click', function(){
   if (account != ''){
-    $('.sign-up-container').hide();
-    $('#inline-contact-add-form').hide();
-    $('.pending-message-container').hide();
-    $('.new-message-container').hide();
-    $('.contact-page-container').hide();
-    $('.main-account-panel').show();
+    pages.signUpPage.hide();
+    pages.inlineContactForm.hide();
+    pages.pendingMessagePage.hide();
+    pages.newMessagePage.hide();
+    pages.contactPage.hide();
+    pages.mainAccountPanel.show();
   }
 });
