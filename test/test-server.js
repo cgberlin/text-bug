@@ -1,6 +1,10 @@
+global.DATABASE_URL =('mongodb://cgberlin:Vagrant@ds053216.mlab.com:53216/text-bug');
+
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var server = require('../server.js');
+var mongoose = require('mongoose');
+var Account = require('../models/account');
 
 var should = chai.should();
 var app = server.app;
@@ -18,12 +22,9 @@ describe('text-bug', function() {
               done();
           });
   });
-  it('should respond with json', function(done){
-      chai.request(app)
-          .get('/messages')
-          .end(function(err, res) {
-            res.should.be.json;
-            done();
-          });
-  });
 });
+
+/*Juan Garcia12:54 pm
+1- work with the test on login
+Juan Garcia12:54 pm
+2- use the same test in the before of each unit test*/

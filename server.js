@@ -9,7 +9,7 @@ var config = require('./config');
 var sinchAuth = require('sinch-auth');
 var sinchSms = require('sinch-messaging');
 var auth = sinchAuth("67a8370a-9a36-40c6-a114-a2d63f598000", "0Ns0QdjDZUmNLSqrRs/jpw==");
-var serverFunctions = require('./server-modules');
+var contactFunctions = require('./routes/contacts');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 
@@ -117,43 +117,15 @@ app.post('/users', function(req, res) {
 });
 
 app.put('/update', function(req, res){
-  serverFunctions.findUserAndSaveContact(req);
+  contactFunctions.findUserAndSaveContact(req);
 });
 
 app.delete('/remove', function(req, res){
-  Account.findByUsername(req.body.username, function(err, account){
-    if (err) { return res.status(500).json({
-        message: 'Internal server error'
-    });
-  }
-    if (!account) { return res.json({
-      message: 'no account found'
-    });
-   }
-   var contactToRemove = req.body.name;
-   for (i = 0; i < account.contacts.length; i++){
-     if (account.contacts[i].name == contactToRemove){
-       account.contacts.splice(i, 1);
-       account.save();
-       console.log(account.contacts);
-     }
-   }
-  });
+  contactFunctions.deleteContact(req);
 });
 
 app.get('/contacts', function(req, res){
-  Account.findByUsername(req.query.username, function(err, account){
-    if (err) { return res.status(500).json({
-        message: 'Internal server error'
-    });
-  }
-    if (!account) { return res.json({
-      message: 'no account specified'
-    });
-   }
-      var contacts = account.contacts;
-      return res.json(contacts);
-  });
+  contactFunctions.getContacts(req, res);
 });
 
 app.get('/messages', function(req, res){
