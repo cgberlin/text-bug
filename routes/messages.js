@@ -60,5 +60,7 @@ module.exports = {
                   timeZone: 'America/Los_Angeles'
                 });
                 job.start();
+              res.send('created message');
         }
+
 }

@@ -42,6 +42,7 @@ passport.deserializeUser(function(id, cb) {
   });
 
 app.post('/hidden', passport.authenticate('local'), function(req, res) {
+  console.log(req);
   res.json('yes');
 });
 app.post('/users', function(req, res) {

@@ -31,6 +31,15 @@ describe('text-bug', function() {
               done();
           });
   });
+  it('should respond with string', function(done){
+      chai.request(app)
+          .post('/users')
+          .send({email : 'ert', password: 'ert'})
+          .end(function(err, res){
+            res.should.be.string;
+            done();
+          });
+  });
 });
 
 /*Juan Garcia12:54 pm
