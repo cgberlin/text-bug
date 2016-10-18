@@ -75,6 +75,7 @@ $('#submit-new-message').on('click', function(){
     contact : $('#contact-name-new-message').val()
   }
   $.post('/create-message', body);
+  returnMainPage();
 });
 
 $('#view-pending-button').on('click', function(){
@@ -105,10 +106,8 @@ $('.contact-page-container').on('click', '.btn-warning', function(){
       data : body,
       type : 'DELETE'
   });
-
     $(this).parent().remove();
 });
-
 $('#login-form-login').on('click', function(){
   var emailName = $('#email-login').val();
   var passwordName = $('#password-login').val();
@@ -124,7 +123,6 @@ $('#login-form-login').on('click', function(){
                                 account = credentials.username;
                               });
   });
-
 $('#account-create-button').on('click', function(){  //handler for account creation
   var emailName = $('#sign-up-email').val();
   var passwordName = $('#sign-up-password').val();
@@ -143,20 +141,22 @@ $('#account-create-button').on('click', function(){  //handler for account creat
     alert('passwords dont match');
   }
 });
-
 $('#sign-up').on('click', function(){
   pages.pendingMessagePage.hide();
   $('.main-page-container').hide()
   pages.signUpPage.show();
 });
-
 $('#brand').on('click', function(){
   if (account != ''){
+    returnMainPage();
+  }
+});
+
+function returnMainPage(){
     pages.signUpPage.hide();
     pages.inlineContactForm.hide();
     pages.pendingMessagePage.hide();
     pages.newMessagePage.hide();
     pages.contactPage.hide();
     pages.mainAccountPanel.show();
-  }
-});
+}
