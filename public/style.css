@@ -61,7 +61,14 @@ body {
   margin:3rem;
   width:20rem;
 }
-
+#confirm-message-created {
+  position: absolute;
+  top:40vh;
+  left:40vw;
+  font-family: 'Droid Serif', serif;
+  color:white;
+  display:none;
+}
 #inline-contact-add-form {
   z-index:4;
   margin-top:9rem;

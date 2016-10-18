@@ -69,6 +69,7 @@ $('#submit-new-message').on('click', function(){      //listener for new message
     contact : $('#contact-name-new-message').val()
   }
   $.post('/create-message', body);      //calls the server with the info needed to create the new message
+  $('#confirm-message-created').fadeIn(500).delay(500).fadeOut(300);
   returnMainPage();
 });
 
