@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(passport.initialize());
 
-passport.use(new Strategy(
+passport.use(new Strategy(    //passport strategy for authentication
   function(username, password, cb) {
     Account.findByUsername(username, function(err, account) {
       if (err) { return cb(err); }
@@ -41,35 +41,34 @@ passport.deserializeUser(function(id, cb) {
     });
   });
 
-app.post('/hidden', passport.authenticate('local'), function(req, res) {
-  console.log(req);
+app.post('/hidden', passport.authenticate('local'), function(req, res) {    //authenticates users with passport
   res.json('yes');
 });
-app.post('/users', function(req, res) {
+app.post('/users', function(req, res) {   //creates a new user
     userFunctions.createUser(req, res);
 });
 
-app.put('/update', function(req, res){
+app.put('/update', function(req, res){      //adds a contact
   contactFunctions.findUserAndSaveContact(req);
 });
 
-app.delete('/remove', function(req, res){
+app.delete('/remove', function(req, res){   //removes a contact
   contactFunctions.deleteContact(req);
 });
 
-app.get('/contacts', function(req, res){
+app.get('/contacts', function(req, res){   //gets list of contacts
   contactFunctions.getContacts(req, res);
 });
 
-app.get('/messages', function(req, res){
+app.get('/messages', function(req, res){   //gets list of messages
   messageFunctions.pendingMessages(req, res);
 });
 
-app.post('/create-message', function(req, res){
+app.post('/create-message', function(req, res){  //creates a new message
   messageFunctions.newMessage(req, res);
 });
 
-var runServer = function(callback) {
+var runServer = function(callback) {    //connects to the mongodb
     mongoose.connect(config.DATABASE_URL, function(err) {
         if (err && callback) {
             return callback(err);
