@@ -22,6 +22,15 @@ describe('text-bug', function() {
               done();
           });
   });
+  it('should not respond 401', function(done) {
+      chai.request(app)
+          .post('/hidden')
+          .send({username: 'asd', password: 'asd'})
+          .end(function(err, res) {
+              res.should.not.have.status(401);
+              done();
+          });
+  });
 });
 
 /*Juan Garcia12:54 pm
