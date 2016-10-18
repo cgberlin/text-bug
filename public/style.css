@@ -119,3 +119,8 @@ body {
 #datepicker, #new-message-time  {
   color:black;
 }
+@media only screen and (max-width: 760px){
+  .main-account-panel{
+    width: 80vw;
+  }
+}
