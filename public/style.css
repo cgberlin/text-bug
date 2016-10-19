@@ -121,4 +121,10 @@ body {
   .main-account-panel{
     width: 80vw;
   }
+  .sign-up-container {
+    background-color: rgba(0, 0, 0, 0.56);
+  }
+  #sign-up-form {
+    margin-top: 13rem;
+  }
 }
