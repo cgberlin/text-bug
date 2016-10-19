@@ -7,23 +7,21 @@ var sinchSms = require('sinch-messaging');
 var auth = sinchAuth("67a8370a-9a36-40c6-a114-a2d63f598000", "0Ns0QdjDZUmNLSqrRs/jpw==");
 var $ = require('jquery');
 
-
 module.exports = {
   pendingMessages : function pendingMessages(req, res){
-        console.log(req.query.username);
-        Account.findByUsername(req.query.username, function(err, account){
-          if (err) { return res.status(500).json({
-              message: 'Internal server error'
-          });
-        }
-          if (!account) { return res.json({
-            message: 'no account specified'
-          });
-         }
-            var pendingMessages = account.pendingMessages;
-            return res.json(pendingMessages);
-        });
-      },
+          Account.findByUsername(req.query.username, function(err, account){
+            if (err) { return res.status(500).json({
+                message: 'Internal server error'
+            });
+          }
+            if (!account) { return res.json({
+              message: 'no account specified'
+            });
+           }
+              var pendingMessages = account.pendingMessages;
+              return res.json(pendingMessages);
+            });
+          },
   newMessage : function newMessage(req, res){
           var contactNumber;
           Account.findByUsername(req.body.username, function(err, account){
@@ -49,11 +47,9 @@ module.exports = {
           var minute = time[1];
           var date = new Date(req.body.date);
           var cronDate = ('00'+' '+minute+ ' '+hour+' '+ date.getDate() + ' ' + date.getMonth() + ' ' +'*');
-          console.log(cronDate);
           var job = new CronJob({
           cronTime: cronDate,
           onTick: function() {
-            console.log('message out!');
             sinchSms.sendMessage("+1"+contactNumber, req.body.messageText);
                   },
                   start: false,
@@ -61,6 +57,6 @@ module.exports = {
                 });
                 job.start();
               res.send('created message');
-        }
+            }
 
 }

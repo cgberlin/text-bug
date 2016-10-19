@@ -14,11 +14,13 @@ $('#new-message-create-contact').on('click', function(){  //listener for the but
   pages.inlineContactForm.show();
 });
 $('#submit-new-contact').on('click', function(){  //listener for button on the inline contact form that is accessed through new message
-  updateContact($('#add-contact-name').val(),  $('#add-contact-number').val());
+  var numberWithNoHyphens = $('#add-contact-number').val().replace(/-/g,"");
+  updateContact($('#add-contact-name').val(), numberWithNoHyphens);
 });
 $('#submit-new-contact-inline').on('click', function(){     //listener for new contact inline form submit
   pages.inlineContactForm.hide();
-  updateContact($('#add-contact-name-inline').val(), $('#add-contact-number-inline').val());      //updates the contact list
+  var numberWithNoHyphens = $('#add-contact-number-inline').val().replace(/-/g,"");
+  updateContact($('#add-contact-name-inline').val(), numberWithNoHyphens);      //updates the contact list
 });
 function updateContact(nameSubmit, numberSubmit){
   $('#list-of-contacts').append('<p class = "contacts" id = "'+nameSubmit+'">'+ nameSubmit + ' : '+ numberSubmit +' ' +'<button type = "button" class = "btn btn-warning">Remove</button></p>');
@@ -42,11 +44,11 @@ function updateContactPage(body){
                           $('#list-of-contacts').append('<p class = "contacts" id = "'+contacts[i].name+'">'+ contacts[i].name + ' : '+ contacts[i].number +' ' + '<button type = "button" class = "btn btn-warning">Remove</button></p>');
                         }
                       });
-}
+                    }
 $('#create-new-message-button').on('click', function(){     //listener to bring up new message panel from main page
   pages.mainAccountPanel.hide();
   pages.newMessagePage.show();
-});
+  });
 
 $('#contacts-button').on('click', function(){      // listenter to open the contact container
   $('#list-of-contacts').empty();
@@ -55,9 +57,9 @@ $('#contacts-button').on('click', function(){      // listenter to open the cont
   pages.contactPage.show();
   var body = {
     username : account
-  }
+    }
   updateContactPage(body);
-});
+  });
 
 $('#submit-new-message').on('click', function(){      //listener for new message submit button
   var body = {
@@ -71,7 +73,7 @@ $('#submit-new-message').on('click', function(){      //listener for new message
   $.post('/create-message', body);      //calls the server with the info needed to create the new message
   $('#confirm-message-created').fadeIn(500).delay(500).fadeOut(300);  //shows message created
   returnMainPage();
-});
+  });
 
 $('#view-pending-button').on('click', function(){    //brings up the pending messages panel
   pages.mainAccountPanel.hide();
@@ -85,24 +87,23 @@ $('#view-pending-button').on('click', function(){    //brings up the pending mes
         for (var length = pendingMessages.length,  i = 0; i < length; i++){
           $('#list-of-messages').append('<div class ="pending-message"><p>Name:'+' '+pendingMessages[i].messageName+
                                                         ' '+'-------'+' '+'Date:'+' '+pendingMessages[i].date);
-        }
-      });
-});
+                                                      }
+                                                    });
+                                                  });
 
 $('.contact-page-container').on('click', '.btn-warning', function(){   //listener for the remove buttons on contacts
     var contactToRemove = $(this).parent().prop('id');
-    console.log($(this).parent().prop('id'));
     var body = {
       username : account,
       name : contactToRemove
-    }
+      }
     $.ajax({      //makes the call to the server to remove the contact
       url : '/remove',
       data : body,
       type : 'DELETE'
-  });
+    });
     $(this).parent().remove();
-});
+  });
 $('#login-form-login').on('click', function(){     //listener for login in button
   var emailName = $('#email-login').val();
   var passwordName = $('#password-login').val();
@@ -117,7 +118,7 @@ $('#login-form-login').on('click', function(){     //listener for login in butto
                                 $('#login-form').hide();
                                 account = credentials.username;
                               });
-  });
+                            });
 $('#account-create-button').on('click', function(){  //handler for account creation
   var emailName = $('#sign-up-email').val();
   var passwordName = $('#sign-up-password').val();
@@ -131,21 +132,21 @@ $('#account-create-button').on('click', function(){  //handler for account creat
           .done(console.log('success'));
       $('.sign-up-container').hide();
       $('.main-page-container').show();
-    }
+      }
   else {
     alert('passwords dont match');
-  }
-});
+      }
+  });
 $('#sign-up').on('click', function(){
   pages.pendingMessagePage.hide();
   $('.main-page-container').hide()
   pages.signUpPage.show();
-});
+  });
 $('#brand').on('click', function(){
   if (account != ''){
     returnMainPage();
-  }
-});
+    }
+  });
 function returnMainPage(){
     pages.signUpPage.hide();
     pages.inlineContactForm.hide();
@@ -153,4 +154,4 @@ function returnMainPage(){
     pages.newMessagePage.hide();
     pages.contactPage.hide();
     pages.mainAccountPanel.show();
-}
+  }

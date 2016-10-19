@@ -10,7 +10,6 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 .main-text-container {
   text-align: center;
   display:flex;
@@ -23,7 +22,6 @@ body {
   font-size:13rem;
   font-family: 'Droid Serif', serif;
   font-weight:700;
-
 }
 #main-text-description {
   font-family: 'Droid Serif', serif;

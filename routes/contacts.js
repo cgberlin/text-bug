@@ -14,7 +14,6 @@ module.exports = {
                                       }
                                       account.contacts.push(req.body.contact);
                                       account.save(function(){
-                                      console.log('account saved');
                                         });
                                       });
                                     },
@@ -33,7 +32,6 @@ module.exports = {
                                  if (account.contacts[i].name == contactToRemove){
                                    account.contacts.splice(i, 1);
                                    account.save();
-                                   console.log(account.contacts);
                                  }
                                }
                               });

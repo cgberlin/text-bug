@@ -9,7 +9,6 @@ var Account = require('../models/account');
 var should = chai.should();
 var app = server.app;
 
-
 chai.use(chaiHttp);
 
 describe('text-bug', function() {
@@ -39,10 +38,5 @@ describe('text-bug', function() {
             res.should.be.string;
             done();
           });
+    });
   });
-});
-
-/*Juan Garcia12:54 pm
-1- work with the test on login
-Juan Garcia12:54 pm
-2- use the same test in the before of each unit test*/
