@@ -8,6 +8,11 @@ var CronJob = require('cron').CronJob;
 var config = require('./config');
 var sinchAuth = require('sinch-auth');
 var sinchSms = require('sinch-messaging');
+var SinchClient = require('sinch-rtc');
+var sinchClient = new SinchClient({
+    applicationKey: '67a8370a-9a36-40c6-a114-a2d63f598000',
+    capabilities: {messaging: true, calling:true},
+});
 var auth = sinchAuth("67a8370a-9a36-40c6-a114-a2d63f598000", "0Ns0QdjDZUmNLSqrRs/jpw==");
 var contactFunctions = require('./routes/contacts');
 var messageFunctions = require('./routes/messages');

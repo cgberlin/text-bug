@@ -18,6 +18,18 @@ body {
   flex-flow: column;
   margin:256px auto;
 }
+#ui-datepicker-div {
+  display:flex;
+  flex-flow:column;
+}
+td {
+  padding:4px !important;
+  border: 1px solid blue;
+  color:white !important;
+}
+.ui-datepicker {
+  width:auto !important; 
+}
 #main-text-title {
   font-size:13rem;
   font-family: 'Droid Serif', serif;

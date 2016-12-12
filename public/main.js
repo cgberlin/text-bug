@@ -62,19 +62,11 @@ $('#contacts-button').on('click', function(){      // listenter to open the cont
   });
 
 $('#submit-new-message').on('click', function(){      //listener for new message submit button
-  var body = {
-    username : account,
-    messageName : $('#message-name').val(),
-    date : $('#datepicker').val(),
-    time : $('#new-message-time').val(),
-    messageText : $('#message-body').val(),
-    contact : $('#contact-name-new-message').val()
-  }
-  $.post('/create-message', body);      //calls the server with the info needed to create the new message
-  $('#confirm-message-created').fadeIn(500).delay(500).fadeOut(300);  //shows message created
-  returnMainPage();
+  newMessageOrCall('/create-message');      //calls the server with the info needed to create the new message
   });
-
+$('#submit-new-call-button').on('click', function(){
+  newMessageOrCall('/create-call');      //calls the server with the info needed to create the new message
+});
 $('#view-pending-button').on('click', function(){    //brings up the pending messages panel
   pages.mainAccountPanel.hide();
   pages.pendingMessagePage.show();
@@ -147,6 +139,20 @@ $('#brand').on('click', function(){
     returnMainPage();
     }
   });
+
+function newMessageOrCall(Route){
+  var body = {
+    username : account,
+    messageName : $('#message-name').val(),
+    date : $('#datepicker').val(),
+    time : $('#new-message-time').val(),
+    messageText : $('#message-body').val(),
+    contact : $('#contact-name-new-message').val()
+  };
+  $.post(Route, body);      //calls the server with the info needed to create the new message
+  $('#confirm-message-created').fadeIn(500).delay(500).fadeOut(300);  //shows message created
+  returnMainPage();
+}
 function returnMainPage(){
     pages.signUpPage.hide();
     pages.inlineContactForm.hide();

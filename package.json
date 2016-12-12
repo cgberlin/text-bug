@@ -4,7 +4,8 @@
   "description": "a web app to create auto-sending messages",
   "main": "server.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -35,12 +36,16 @@
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
+    "sinch": "^0.4.0",
     "sinch-auth": "0.0.1",
-    "sinch-messaging": "0.0.1"
+    "sinch-messaging": "0.0.1",
+    "sinch-rtc": "^1.4.5",
+    "wrtc": "0.0.61"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "mocha": "^3.1.0"
+    "mocha": "^3.1.0",
+    "nodemon": "^1.11.0"
   }
 }
