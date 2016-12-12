@@ -18,17 +18,10 @@ body {
   flex-flow: column;
   margin:256px auto;
 }
-#ui-datepicker-div {
-  display:flex;
-  flex-flow:column;
-}
 td {
   padding:4px !important;
   border: 1px solid blue;
   color:white !important;
-}
-.ui-datepicker {
-  width:auto !important; 
 }
 #main-text-title {
   font-size:13rem;
@@ -121,7 +114,7 @@ td {
 	display: none;
 	margin-top: 4px;
 	padding: 10px;
-	width: 240px;
+	width:auto !important; 
 }
 #brand:hover {
   cursor:pointer;
