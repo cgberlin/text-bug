@@ -58,7 +58,7 @@ td {
   height:80vh;
   flex-wrap: wrap;
 }
-.main-account-left-panel, .main-account-right-panel{
+.main-account-left-panel, .main-account-right-panel, .main-account-panel {
   width:30%;
   height:100%;
   background-color: #333;
@@ -66,6 +66,7 @@ td {
   border:1px solid #101010;
   margin:10rem auto;
   text-align: center;
+  box-shadow: 0 0 10px LightGray;
 }
 #about-text {
   padding:2rem;
@@ -108,9 +109,11 @@ td {
   margin:10rem auto;
   text-align: center;
   display:none;
+  box-shadow: 0 0 10px LightGray;
 }
 #new-message-form, #add-contact-form {
   margin:2rem;
+
 }
 .contact-page-container, .pending-message-container {
   background-color: #333;
@@ -121,6 +124,7 @@ td {
   margin:10rem auto;
   text-align: center;
   display:none;
+  box-shadow: 0 0 10px LightGray;
 }
 .ui-datepicker {
 	background-color: #fff;
