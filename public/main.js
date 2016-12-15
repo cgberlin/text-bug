@@ -1,6 +1,8 @@
 var account = '';        // variable to store the account name
 var pages = {           // object containing references to each container element
-  mainAccountPanel : $('.main-account-panel'),
+  mainAccountPanel : $('#main-panel'),
+  rightAccountPanel : $('.main-account-right-panel'),
+  leftAccountPanel : $('.main-account-left-panel'),
   signUpPage : $('.sign-up-container'),
   pendingMessagePage : $('.pending-message-container'),
   newMessagePage : $('.new-message-container'),
@@ -106,7 +108,7 @@ $('#login-form-login').on('click', function(){     //listener for login in butto
   var accountReal = $.post('/hidden', credentials)   //calls the server to authenticate the user
                       .done(function(){
                                 $('.main-page-container').hide();
-                                pages.mainAccountPanel.show();
+                                pages.mainAccountPanel.css('display', 'flex')
                                 $('#login-form').hide();
                                 account = credentials.username;
                               });
@@ -138,6 +140,9 @@ $('#brand').on('click', function(){
   if (account != ''){
     returnMainPage();
     }
+  else {
+    pages.signUpPage.hide();
+  }
   });
 
 function newMessageOrCall(Route){
@@ -160,4 +165,4 @@ function returnMainPage(){
     pages.newMessagePage.hide();
     pages.contactPage.hide();
     pages.mainAccountPanel.show();
-  }
+ }

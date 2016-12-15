@@ -55,27 +55,39 @@
         </form>
       </div>
 
-      <div class = "main-account-panel">    <!--account panel after login-->
-        <h3>Account Panel</h3>
-        <div id = "panel-buttons-container">
-          <button id = "create-new-message-button" type="button" class="btn btn-primary btn-lg">New Message</button>
-          <button id = "view-pending-button" type="button" class="btn btn-primary btn-lg">Sent Messages</button>
-          <button id = "contacts-button" type="button" class="btn btn-primary btn-lg">Contacts</button>
-          <p>Refresh to automatically log out</p>
+      <div id = "main-panel">
+        <div class = "main-account-left-panel">    <!--account panel after login-->
+          <h3>About</h3>
+          <h4 id = "about-text">Text Bug is able to create, store, and save accounts and contacts for each account.
+            Once an account is created you can create custom text messages to be sent on a specified date and time.
+            It can be used for reminders, alerts, alarms, or anything else you can think of!
+          </h4>
         </div>
-      </div>
-      <div id="inline-contact-add-form">
-          <form id="add-contact-form">
-          <div class="form-group">
-            <label for="add-contact-name-inline">Contact Name</label>
-            <input id="add-contact-name-inline" type="text" class="form-control">
+        <div class = "main-account-panel">    
+          <h3>Account Panel</h3>
+          <div id = "panel-buttons-container">
+            <button id = "create-new-message-button" type="button" class="btn btn-primary btn-lg">New Message</button>
+            <button id = "view-pending-button" type="button" class="btn btn-primary btn-lg">Sent Messages</button>
+            <button id = "contacts-button" type="button" class="btn btn-primary btn-lg">Contacts</button>
+            <p>Refresh to automatically log out</p>
           </div>
-          <div class="form-group">
-            <label for="add-contact-number-inline">Contact Phone Number</label>
-            <input id="add-contact-number-inline" type="telephone" class="form-control">
-          </div>
-          <button id="submit-new-contact-inline" type="button" class="btn btn-primary">Add Contact</button>
-        </form>
+        </div>
+        <div id="inline-contact-add-form">
+            <form id="add-contact-form">
+            <div class="form-group">
+              <label for="add-contact-name-inline">Contact Name</label>
+              <input id="add-contact-name-inline" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="add-contact-number-inline">Contact Phone Number</label>
+              <input id="add-contact-number-inline" type="telephone" class="form-control">
+            </div>
+            <button id="submit-new-contact-inline" type="button" class="btn btn-primary">Add Contact</button>
+          </form>
+        </div>
+        <div class = "main-account-right-panel">    
+          <h3>Pending</h3>
+        </div>
       </div>
 
       <h1 id = "confirm-message-created">Message Created</h1>

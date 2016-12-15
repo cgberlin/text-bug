@@ -25,6 +25,11 @@ The cron npm package was used to trigger events at specified times.
 I used the passport middleware for user authentication, and mongodb/mongoose for the database storage.
 For quick styling of the front-end I chose bootstrap, but that may change eventually.
 
+##Demo
+https://text-bug.herokuapp.com/
+username: test
+password: test
+
 ![alt text](http://i.imgur.com/FU6N8OT.png "Account Panel")
 
 ![alt text](http://i.imgur.com/AHuJwlY.png "Contact Page")
