@@ -4,6 +4,7 @@
   align-items: center;
   flex-flow: column;
   color:white;
+  height:80vh;
 }
 .contacts {
   display: flex;
@@ -16,9 +17,12 @@
   display: none;
 }
 body {
-  background-image: url("smartphone.jpg");
+  background: url("smartphone.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-repeat: no-repeat;
+}
 }
 .main-text-container {
   text-align: center;
@@ -26,7 +30,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  margin:256px auto;
 }
 td {
   padding:4px !important;
@@ -41,6 +44,7 @@ td {
 #main-text-description {
   font-family: 'Droid Serif', serif;
   font-size:3rem;
+  text-align: center;
 }
 .sign-up-container {
   background-color: #333;
@@ -174,6 +178,12 @@ td {
     width:80%;
   }
   #main-panel {
-    height:auto  
+    height:auto 
+  }
+  #main-text-title {
+    font-size:7rem;
+  }
+  .main-page-container {
+    margin-top:5rem;
   }
 }
