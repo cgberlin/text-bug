@@ -16,12 +16,15 @@ $('#new-message-create-contact').on('click', function(){  //listener for the but
   pages.inlineContactForm.show();
 });
 $('#submit-new-contact').on('click', function(){  //listener for button on the inline contact form that is accessed through new message
-  var numberWithNoHyphens = $('#add-contact-number').val().replace(/-/g,"");
+  var numberWithNoHyphens = $('#add-contact-number').val().replace(/[^0-9.]/g, '');
+  numberWithNoHyphens = numberWithNoHyphens.slice(1);
   updateContact($('#add-contact-name').val(), numberWithNoHyphens);
 });
 $('#submit-new-contact-inline').on('click', function(){     //listener for new contact inline form submit
   pages.inlineContactForm.hide();
-  var numberWithNoHyphens = $('#add-contact-number-inline').val().replace(/-/g,"");
+  var numberWithNoHyphens = $('#add-contact-number-inline').val().replace(/[^0-9.]/g, '');
+  numberWithNoHyphens = numberWithNoHyphens.slice(1);
+  $('#contact-name-new-message').val($('#add-contact-name-inline').val());
   updateContact($('#add-contact-name-inline').val(), numberWithNoHyphens);      //updates the contact list
 });
 function updateContact(nameSubmit, numberSubmit){
@@ -39,6 +42,18 @@ function updateContact(nameSubmit, numberSubmit){
         type : 'PUT'
     });
 }
+
+$(document).mouseup(function (e)
+{
+    var container = $("#add-contact-form");
+    if (!container.is(e.target) 
+        && container.has(e.target).length === 0) 
+    {
+        pages.inlineContactForm.hide();
+    }
+});
+
+
 function updateContactPage(body){
   $.get('/contacts', body)       //call to update the contact list when contact container is loaded
                       .done(function(contacts){
@@ -99,6 +114,13 @@ $('.contact-page-container').on('click', '.btn-warning', function(){   //listene
     $(this).parent().remove();
   });
 $('#login-form-login').on('click', function(){     //listener for login in button
+  authenticateUser();
+});
+$("#login-form").on( "keydown", function(event) {
+  if(event.which == 13) 
+    authenticateUser();
+    });
+function authenticateUser() {
   var emailName = $('#email-login').val();
   var passwordName = $('#password-login').val();
   var credentials = {
@@ -112,7 +134,8 @@ $('#login-form-login').on('click', function(){     //listener for login in butto
                                 $('#login-form').hide();
                                 account = credentials.username;
                               });
-                            });
+                            
+}
 $('#account-create-button').on('click', function(){  //handler for account creation
   var emailName = $('#sign-up-email').val();
   var passwordName = $('#sign-up-password').val();

@@ -9,6 +9,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <link href="https://fonts.googleapis.com/css?family=Droid+Serif:700" rel="stylesheet">
       <link rel="styesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
+      <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/css/bootstrap-formhelpers.min.css">
     </head>
 
     <body>
@@ -72,24 +73,23 @@
             <p>Refresh to automatically log out</p>
           </div>
         </div>
-        <div id="inline-contact-add-form">
-            <form id="add-contact-form">
-            <div class="form-group">
-              <label for="add-contact-name-inline">Contact Name</label>
-              <input id="add-contact-name-inline" type="text" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="add-contact-number-inline">Contact Phone Number</label>
-              <input id="add-contact-number-inline" type="telephone" class="form-control">
-            </div>
-            <button id="submit-new-contact-inline" type="button" class="btn btn-primary">Add Contact</button>
-          </form>
-        </div>
         <div class = "main-account-right-panel">    
           <h3>Pending</h3>
         </div>
       </div>
-
+      <div id="inline-contact-add-form">
+        <form id="add-contact-form">
+          <div class="form-group">
+            <label for="add-contact-name-inline">Contact Name</label>
+            <input id="add-contact-name-inline" type="text" class="input-medium">
+          </div>
+          <div class="form-group">
+            <label for="add-contact-number-inline">Contact Phone Number</label>
+            <input id="add-contact-number-inline" type="text" class="input-medium bfh-phone" data-country="US">
+          </div>
+          <button id="submit-new-contact-inline" type="button" class="btn btn-primary">Add Contact</button>
+        </form>
+      </div>
       <h1 id = "confirm-message-created">Message Created</h1>
       <div class = "new-message-container">    <!--create new message page-->
         <h3>Create Message</h3>
@@ -125,11 +125,11 @@
         <form id = "add-contact-form">
           <div class = "form-group">
             <label for "add-contact-name">Contact Name</label>
-            <input id = "add-contact-name" type = "text" class = "form-control"></input>
+            <input id = "add-contact-name" type = "text" class = "input-medium"></input>
           </div>
           <div class = "form-group">
-            <label for "add-contact-number">Contact Phone Number</label>
-            <input id = "add-contact-number" type = "telephone" class = "form-control"></input>
+            <label for "add-contact-number">Contact Number</label>
+            <input id = "add-contact-number" type="text" class="input-medium bfh-phone" data-country="US"></input>
           </div>
           <button id = "submit-new-contact" type = "button" class = "btn btn-primary">Add Contact</button>
         </form>
@@ -144,6 +144,7 @@
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
       <script type = "text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
       <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
       <script type="text/javascript" src="main.js"></script>
       </body>
 </html>

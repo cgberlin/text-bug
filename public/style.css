@@ -32,6 +32,7 @@ td {
   font-family: 'Droid Serif', serif;
   font-size:3rem;
 }
+
 .sign-up-container {
   background-color: #333;
   color:white;
@@ -98,7 +99,10 @@ td {
   margin:9rem 40vw;
   display:none;
   color:white;
-  box-shadow:3px 3px 2px black;
+  box-shadow: 0 0 10px LightGray;k;
+}
+#add-contact-form {
+  width:15rem;
 }
 .new-message-container {
   background-color: #333;
@@ -113,7 +117,6 @@ td {
 }
 #new-message-form, #add-contact-form {
   margin:2rem;
-
 }
 .contact-page-container, .pending-message-container {
   background-color: #333;
@@ -140,6 +143,9 @@ td {
   cursor:pointer;
 }
 #datepicker, #new-message-time  {
+  color:black;
+}
+#add-contact-name, #add-contact-number, #add-contact-name-inline, #add-contact-number-inline {
   color:black;
 }
 @media only screen and (max-width: 760px){
