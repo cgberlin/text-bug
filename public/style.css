@@ -17,7 +17,7 @@
   display: none;
 }
 body {
-  background: url("smartphone.jpg") no-repeat center center fixed; 
+  background: url("smartphone.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -115,7 +115,11 @@ td {
   box-shadow: 0 0 10px LightGray;k;
 }
 #add-contact-form {
-  width:15rem;
+  width:20vh;
+  height:20vh;
+  display:flex;
+  flex-flow:column;
+  align-items: center;
 }
 .new-message-container {
   background-color: #333;
@@ -153,7 +157,7 @@ td {
 	display: none;
 	margin-top: 4px;
 	padding: 10px;
-	width:auto !important; 
+	width:auto !important;
 }
 #brand:hover {
   cursor:pointer;
@@ -163,6 +167,15 @@ td {
 }
 #add-contact-name, #add-contact-number, #add-contact-name-inline, #add-contact-number-inline {
   color:black;
+}
+#submit-new-contact-inline {
+  margin:0 auto;
+}
+#inline-form-group-style {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin:1rem;
 }
 @media only screen and (max-width: 760px){
   .sign-up-container {
@@ -178,12 +191,18 @@ td {
     width:80%;
   }
   #main-panel {
-    height:auto 
+    height:auto
   }
   #main-text-title {
     font-size:7rem;
   }
   .main-page-container {
     margin-top:5rem;
+  }
+  #inline-contact-add-form {
+    margin: 9rem 26vw;
+  }
+  .new-message-container, .contact-page-container, .pending-message-container {
+    width:80vw;
   }
 }
