@@ -27,6 +27,28 @@ module.exports = {
               return res.json(pendingMessages);
             });
           },
+  newInstantMessage : function newInstantMessage(req, res) {
+          var contactNumber;
+          Account.findByUsername(req.body.username, function(err, account){
+            if (err) { return res.status(500).json({
+                message: 'Internal server error'
+            });
+          }
+            if (!account) { return res.json({
+              message: 'no account specified'
+            });
+           }
+            account.pendingMessages.push(req.body);
+            account.save();
+            for (var length = account.contacts.length, i = 0; i<length; i++){
+              if (account.contacts[i].name == req.body.contact){
+                  contactNumber = account.contacts[i].number;
+                  sinchSms.sendMessage("+1" + contactNumber, req.body.messageText);
+              }
+            }
+          });
+            res.send('sent message');
+          },
   newMessage : function newMessage(req, res){
           var contactNumber;
           Account.findByUsername(req.body.username, function(err, account){
@@ -63,7 +85,7 @@ module.exports = {
                 job.start();
               res.send('created message');
             },
-    newCall : function newCall(req, res){
+          newCall : function newCall(req, res){
           var contactNumber;
           Account.findByUsername(req.body.username, function(err, account){
             if (err) { return res.status(500).json({

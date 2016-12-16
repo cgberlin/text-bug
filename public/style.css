@@ -5,6 +5,16 @@
   flex-flow: column;
   color:white;
 }
+.contacts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:50%;
+  margin: 1rem auto;
+}
+#message-sent-display, #message-created-display {
+  display: none;
+}
 body {
   background-image: url("smartphone.jpg");
   background-size: cover;
@@ -32,7 +42,6 @@ td {
   font-family: 'Droid Serif', serif;
   font-size:3rem;
 }
-
 .sign-up-container {
   background-color: #333;
   color:white;
@@ -59,7 +68,7 @@ td {
   height:80vh;
   flex-wrap: wrap;
 }
-.main-account-left-panel, .main-account-right-panel, .main-account-panel {
+.main-account-left-panel, .main-account-panel {
   width:30%;
   height:100%;
   background-color: #333;
@@ -115,8 +124,11 @@ td {
   display:none;
   box-shadow: 0 0 10px LightGray;
 }
-#new-message-form, #add-contact-form {
+#new-message-form {
   margin:2rem;
+}
+#add-contact-form {
+  margin: 2rem auto;
 }
 .contact-page-container, .pending-message-container {
   background-color: #333;
@@ -160,5 +172,8 @@ td {
   }
   .main-account-panel {
     width:80%;
+  }
+  #main-panel {
+    height:auto  
   }
 }

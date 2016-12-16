@@ -10,7 +10,8 @@ var pages = {           // object containing references to each container elemen
   inlineContactForm : $('#inline-contact-add-form')
 };
 $( function() {          //initializes the datepicker
-  $( "#datepicker" ).datepicker();
+  var dateToday = new Date(); 
+  $( "#datepicker" ).datepicker({ minDate: dateToday});
 });
 $('#new-message-create-contact').on('click', function(){  //listener for the button to bring up the inline contact add form
   pages.inlineContactForm.show();
@@ -42,7 +43,6 @@ function updateContact(nameSubmit, numberSubmit){
         type : 'PUT'
     });
 }
-
 $(document).mouseup(function (e)
 {
     var container = $("#add-contact-form");
@@ -52,8 +52,6 @@ $(document).mouseup(function (e)
         pages.inlineContactForm.hide();
     }
 });
-
-
 function updateContactPage(body){
   $.get('/contacts', body)       //call to update the contact list when contact container is loaded
                       .done(function(contacts){
@@ -65,6 +63,8 @@ function updateContactPage(body){
 $('#create-new-message-button').on('click', function(){     //listener to bring up new message panel from main page
   pages.mainAccountPanel.hide();
   pages.newMessagePage.show();
+  $('#message-sent-display').hide();
+  $('#message-created-display').hide();
   });
 
 $('#contacts-button').on('click', function(){      // listenter to open the contact container
@@ -72,14 +72,56 @@ $('#contacts-button').on('click', function(){      // listenter to open the cont
   pages.pendingMessagePage.hide();
   pages.mainAccountPanel.hide();
   pages.contactPage.show();
+  $('#message-sent-display').hide();
+  $('#message-created-display').hide();
   var body = {
     username : account
     }
   updateContactPage(body);
   });
-
+$('#submit-instant-message').on('click', function(){
+  var body = {
+    username : account,
+    messageName : $('#message-name').val(),
+    date : $('#datepicker').val(),
+    time : $('#new-message-time').val(),
+    messageText : $('#message-body').val(),
+    contact : $('#contact-name-new-message').val()
+  };
+  if (!body.contact){
+    alert('Need to specify contact');
+  }
+  else if (!body.messageText) {
+    alert('Need to include message text');
+  }
+  else {
+    newMessageOrCall('/instant', body);
+  }
+});
 $('#submit-new-message').on('click', function(){      //listener for new message submit button
-  newMessageOrCall('/create-message');      //calls the server with the info needed to create the new message
+  var body = {
+    username : account,
+    messageName : $('#message-name').val(),
+    date : $('#datepicker').val(),
+    time : $('#new-message-time').val(),
+    messageText : $('#message-body').val(),
+    contact : $('#contact-name-new-message').val()
+  };
+  if (!body.messageName) {
+    alert('Need message name');
+  }
+  else if (!body.contact) {
+    alert('Need to specify contact');
+  }
+  else if (!body.date) {
+    alert('Need to specify date');
+  }
+  else if (!body.messageText) {
+    alert('Need to specify message text');
+  }
+  else {
+     newMessageOrCall('/create-message', body);  
+     }   
   });
 $('#submit-new-call-button').on('click', function(){
   newMessageOrCall('/create-call');      //calls the server with the info needed to create the new message
@@ -87,15 +129,18 @@ $('#submit-new-call-button').on('click', function(){
 $('#view-pending-button').on('click', function(){    //brings up the pending messages panel
   pages.mainAccountPanel.hide();
   pages.pendingMessagePage.show();
+  $('#message-sent-display').hide();
+  $('#message-created-display').hide();
   $('#list-of-messages').empty();
   var body = {
     username : account
   }
   $.get('/messages', body)    //call to retrieve the list of sent messages, then appends to the page
       .done(function(pendingMessages){
-        for (var length = pendingMessages.length,  i = 0; i < length; i++){
-          $('#list-of-messages').append('<div class ="pending-message"><p>Name:'+' '+pendingMessages[i].messageName+
-                                                        ' '+'-------'+' '+'Date:'+' '+pendingMessages[i].date);
+        var newMessageArray = pendingMessages.slice(Math.max(pendingMessages.length - 10, 1))
+        for (var length = newMessageArray.length,  i = 0; i < length; i++){
+          $('#list-of-messages').append('<div class ="pending-message"><p>Name:'+' '+newMessageArray[i].contact+
+                                                        ' '+'-------'+' '+'Date:'+' '+newMessageArray[i].date);
                                                       }
                                                     });
                                                   });
@@ -168,17 +213,26 @@ $('#brand').on('click', function(){
   }
   });
 
-function newMessageOrCall(Route){
-  var body = {
-    username : account,
-    messageName : $('#message-name').val(),
-    date : $('#datepicker').val(),
-    time : $('#new-message-time').val(),
-    messageText : $('#message-body').val(),
-    contact : $('#contact-name-new-message').val()
-  };
+function newMessageOrCall(Route, body){
+  if (Route == '/instant') {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; 
+    var yyyy = today.getFullYear();
+    if(dd<10) {
+        dd='0'+dd
+    } 
+    if(mm<10) {
+        mm='0'+mm
+    } 
+    today = mm+'/'+dd+'/'+yyyy;
+    body.date = today;
+    $('#message-sent-display').fadeIn(500);
+  }
+  else {
+    $('#message-created-display').fadeIn(500);
+  }
   $.post(Route, body);      //calls the server with the info needed to create the new message
-  $('#confirm-message-created').fadeIn(500).delay(500).fadeOut(300);  //shows message created
   returnMainPage();
 }
 function returnMainPage(){

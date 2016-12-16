@@ -57,24 +57,23 @@
       </div>
 
       <div id = "main-panel">
-        <div class = "main-account-left-panel">    <!--account panel after login-->
-          <h3>About</h3>
-          <h4 id = "about-text">Text Bug is able to create, store, and save accounts and contacts for each account.
-            Once an account is created you can create custom text messages to be sent on a specified date and time.
-            It can be used for reminders, alerts, alarms, or anything else you can think of!
-          </h4>
-        </div>
         <div class = "main-account-panel">    
-          <h3>Account Panel</h3>
+          <h2>Account Panel</h3>
           <div id = "panel-buttons-container">
             <button id = "create-new-message-button" type="button" class="btn btn-primary btn-lg">New Message</button>
             <button id = "view-pending-button" type="button" class="btn btn-primary btn-lg">Sent Messages</button>
             <button id = "contacts-button" type="button" class="btn btn-primary btn-lg">Contacts</button>
             <p>Refresh to automatically log out</p>
+            <h3 id = "message-sent-display">Message Sent</h3>
+            <h3 id = "message-created-display">Message Created</h3>
           </div>
         </div>
-        <div class = "main-account-right-panel">    
-          <h3>Pending</h3>
+        <div class = "main-account-left-panel">    <!--account panel after login-->
+          <h2>About</h3>
+          <h3 id = "about-text">Text Bug is able to create, store, and save accounts and contacts for each account.
+            Once an account is created you can create custom text messages to be sent on a specified date and time.
+            It can be used for reminders, alerts, alarms, or anything else you can think of!
+          </h4>
         </div>
       </div>
       <div id="inline-contact-add-form">
@@ -102,11 +101,11 @@
           <div class = "form-group">
             <label for "new-message-contact">Enter Contact Name or Click New Contact</label>  <!--will load list of contacts in menu from mongodb-->
             <input id = "contact-name-new-message" type = "text" class = "form-control"></input>
-            <small id= "message-contact-text" class="form-text text-muted">Please enter the contacts name.</small>
+            <small id= "message-contact-text" class="form-text text-muted">Please enter the contacts name</small>
           </div>
           <button id = "new-message-create-contact" type = "button" class = "btn btn-primary">New Contact</button>
           <div class = "form-group">
-            <label for "datepicker">Select a date and time for message to be sent.</label> <!--need to figure out datepicker-->
+            <label for "datepicker">select a date and time if sending later</label> <!--need to figure out datepicker-->
             <div id = "datepicker-container"><p>Date:<input type = "text" id = "datepicker"></input></p></div>
             <input id = "new-message-time" type = "time" value = "17:39"></input>
           </div>
@@ -114,7 +113,8 @@
             <label for "message-body">Enter Message</label>
             <input id = "message-body" type = "text" class = "form-control"></input>
           </div>
-          <button id = "submit-new-message" type = "button" class = "btn btn-primary">Create Message</button>
+          <button id = "submit-new-message" type = "button" class = "btn btn-primary">Send Later</button>
+          <button id = "submit-instant-message" type = "button" class = "btn btn-primary">Send Now</button>
         </form>
       </div>
 
@@ -135,8 +135,8 @@
         </form>
       </div>
 
-      <div class = "pending-message-container">  <!-- pending message page -->
-        <h3 id = "pending-header-title">Sent/Pending Messages</h3>
+      <div class = "pending-message-container">  <!-- sent message page -->
+        <h2 id = "pending-header-title">Last 10 Messages</h3>
         <div id = "list-of-messages">
         </div>
       </div>

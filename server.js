@@ -73,6 +73,10 @@ app.post('/create-message', function(req, res){  //creates a new message
   messageFunctions.newMessage(req, res);
 });
 
+app.post('/instant', function(req, res) {
+  messageFunctions.newInstantMessage(req, res);
+});
+
 var runServer = function(callback) {    //connects to the mongodb
     mongoose.connect(config.DATABASE_URL, function(err) {
         if (err && callback) {
