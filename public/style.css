@@ -186,4 +186,7 @@ td {
   .main-page-container {
     margin-top:5rem;
   }
+  #add-contact-form {
+    width:25rem;
+}
 }
