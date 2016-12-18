@@ -202,12 +202,6 @@ td {
   .main-page-container {
     margin-top:5rem;
   }
-  #add-contact-form {
-    width:25rem;
-  }
-  #inline-contact-add-form {
-    margin: 9rem 26vw;
-  }
   .new-message-container, .contact-page-container, .pending-message-container {
     width:80vw;
   }
