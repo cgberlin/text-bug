@@ -5,7 +5,7 @@ Once an account is created you can create custom text messages to be sent on a s
 There are plans for future features, some of which I have already begun to work on.
 Please read below for more info.
 
-![alt text](http://i.imgur.com/iHlZ8ZD.png "Landing Page")
+![alt text](http://i.imgur.com/TjttQmH.jpg "Landing Page")
 
 ## Summary
 Text Bug will allow a user to add or upload contacts. Once contacts are uploaded the user will be able to
@@ -32,8 +32,6 @@ username: test
 
 password: test
 
-![alt text](http://i.imgur.com/FU6N8OT.png "Account Panel")
+![alt text](http://i.imgur.com/DHNXyW1.jpg "Account Panel")
 
-![alt text](http://i.imgur.com/AHuJwlY.png "Contact Page")
-
-![alt text](http://i.imgur.com/nCB8zTV.png "New Message Panel")
+![alt text](http://i.imgur.com/Lh9kjOL.jpg "New Message Panel")
