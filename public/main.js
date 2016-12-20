@@ -227,10 +227,44 @@ function newMessageOrCall(Route, body){
     } 
     today = mm+'/'+dd+'/'+yyyy;
     body.date = today;
-    $('#message-sent-display').fadeIn(500);
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-top-center",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "100",
+      "hideDuration": "400",
+      "timeOut": "1500",
+      "extendedTimeOut": "100",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+    toastr["info"]('message sent');
   }
   else {
-    $('#message-created-display').fadeIn(500);
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-top-center",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "100",
+      "hideDuration": "400",
+      "timeOut": "1500",
+      "extendedTimeOut": "100",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+    toastr["info"]('message created');
   }
   $.post(Route, body);      //calls the server with the info needed to create the new message
   returnMainPage();

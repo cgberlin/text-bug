@@ -6,6 +6,10 @@
   color:white;
   height:80vh;
 }
+.toast-container {
+  top: 12px;
+  margin: 0 auto !important;
+}
 .contacts {
   display: flex;
   justify-content: space-between;

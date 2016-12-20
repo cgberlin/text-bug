@@ -10,6 +10,7 @@
       <link href="https://fonts.googleapis.com/css?family=Droid+Serif:700" rel="stylesheet">
       <link rel="styesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
       <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/css/bootstrap-formhelpers.min.css">
+      <link rel = "stylesheet" href = "toastr.css">
     </head>
 
     <body>
@@ -64,8 +65,6 @@
             <button id = "view-pending-button" type="button" class="btn btn-primary btn-lg">Sent Messages</button>
             <button id = "contacts-button" type="button" class="btn btn-primary btn-lg">Contacts</button>
             <p>Refresh to automatically log out</p>
-            <h3 id = "message-sent-display">Message Sent</h3>
-            <h3 id = "message-created-display">Message Created</h3>
           </div>
         </div>
         <div class = "main-account-left-panel">    <!--account panel after login-->
@@ -89,7 +88,6 @@
           <button id="submit-new-contact-inline" type="button" class="btn btn-primary">Add Contact</button>
         </form>
       </div>
-      <h1 id = "confirm-message-created">Message Created</h1>
       <div class = "new-message-container">    <!--create new message page-->
         <h3>Create Message</h3>
         <form id = "new-message-form">
@@ -146,5 +144,6 @@
       <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
       <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-formhelpers/2.3.0/js/bootstrap-formhelpers.min.js"></script>
       <script type="text/javascript" src="main.js"></script>
+      <script type = "text/javascript" src = "toastr.min.js"></script>
       </body>
 </html>
