@@ -89,10 +89,10 @@ $('#submit-instant-message').on('click', function(){
     contact : $('#contact-name-new-message').val()
   };
   if (!body.contact){
-    alert('Need to specify contact');
+    createToastr('Need to specify contact', 'error');
   }
   else if (!body.messageText) {
-    alert('Need to include message text');
+    createToastr('Need to include message text', 'error');
   }
   else {
     newMessageOrCall('/instant', body);
@@ -108,16 +108,16 @@ $('#submit-new-message').on('click', function(){      //listener for new message
     contact : $('#contact-name-new-message').val()
   };
   if (!body.messageName) {
-    alert('Need message name');
+    createToastr('Need message name', 'error');
   }
   else if (!body.contact) {
-    alert('Need to specify contact');
+    createToastr('Need to specify contact', 'error');
   }
   else if (!body.date) {
-    alert('Need to specify date');
+    createToastr('Need to specify date', 'error');
   }
   else if (!body.messageText) {
-    alert('Need to specify message text');
+    alert('Need to specify message text', 'error');
   }
   else {
      newMessageOrCall('/create-message', body);  
@@ -196,7 +196,7 @@ $('#account-create-button').on('click', function(){  //handler for account creat
       $('.main-page-container').show();
       }
   else {
-    alert('passwords dont match');
+    createToastr('passwords dont match', 'error');
       }
   });
 $('#sign-up').on('click', function(){
@@ -210,6 +210,7 @@ $('#brand').on('click', function(){
     }
   else {
     pages.signUpPage.hide();
+    $('.main-page-container').show()
   }
   });
 
@@ -227,44 +228,10 @@ function newMessageOrCall(Route, body){
     } 
     today = mm+'/'+dd+'/'+yyyy;
     body.date = today;
-    toastr.options = {
-      "closeButton": false,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": false,
-      "positionClass": "toast-top-center",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "100",
-      "hideDuration": "400",
-      "timeOut": "1500",
-      "extendedTimeOut": "100",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    };
-    toastr["info"]('message sent');
+    createToastr("message sent", "info");
   }
   else {
-    toastr.options = {
-      "closeButton": false,
-      "debug": false,
-      "newestOnTop": false,
-      "progressBar": false,
-      "positionClass": "toast-top-center",
-      "preventDuplicates": false,
-      "onclick": null,
-      "showDuration": "100",
-      "hideDuration": "400",
-      "timeOut": "1500",
-      "extendedTimeOut": "100",
-      "showEasing": "swing",
-      "hideEasing": "linear",
-      "showMethod": "fadeIn",
-      "hideMethod": "fadeOut"
-    };
-    toastr["info"]('message created');
+    createToastr("message created", "info");
   }
   $.post(Route, body);      //calls the server with the info needed to create the new message
   returnMainPage();
@@ -277,3 +244,23 @@ function returnMainPage(){
     pages.contactPage.hide();
     pages.mainAccountPanel.show();
  }
+function createToastr(Message, Type) {
+      toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-top-center",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "100",
+      "hideDuration": "400",
+      "timeOut": "1500",
+      "extendedTimeOut": "100",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+    toastr[Type](Message);
+}
